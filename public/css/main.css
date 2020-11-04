@@ -1,0 +1,53 @@
+/* * * * * * * * * * * * * *
+ *
+ * PATH: public/resets.css
+ *
+ * * * * * * * * * * * * * */
+
+@import "./fonts.css";
+@import "./resets.css";
+
+body, p, a {
+  font-family: 'Junicode';
+  font-size: 2em;
+}
+
+code {
+  font-size: .8em;
+  font-family: 'M+ MN Type-1 Regular';
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bagnard';
+}
+
+h1 {
+  font-size: 1.4em;
+}
+h2 {
+  font-size: 1.4em;
+}
+
+a {
+  font-family: 'Junicode Bold';
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #6112f1;
+}
+
+div.rounded {
+  box-sizing: border-box;
+  border: solid 1px #fffefc;
+  border-radius: 40px;
+  padding: 40px;
+}
+
+div.button {
+  padding: 10px;
+  text-align: center;
+  font-size: .4em;
+  flex: 0;
+}
+
