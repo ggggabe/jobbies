@@ -1,4 +1,3 @@
-import { JobsContext } from './contexts'
 import { JobCards } from './components'
 
 const App = () => {
