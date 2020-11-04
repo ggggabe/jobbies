@@ -33,11 +33,24 @@ a {
   text-decoration: underline;
 }
 
-a:hover {
+*:hover {
   color: #6112f1;
 }
 
-div.rounded {
+button {
+  font-size: 1em;
+  font-family: inherit;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+button:hover {
+  background-image: url('https://i.imgur.com/W3tra4F.gif');
+}
+
+
+.rounded {
   box-sizing: border-box;
   border: solid 1px #fffefc;
   border-radius: 40px;

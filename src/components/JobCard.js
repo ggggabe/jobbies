@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { JobModel } from '../models'
 import { JobsContext } from '../contexts'
+import { Card, CardHeader, Button } from './containers'
 
 const JobCard = ({model}) => {
   const {
@@ -10,30 +11,17 @@ const JobCard = ({model}) => {
   } = JobModel.getCardProps(model)
 
   return (
-    <div className='rounded' style={{
-      width: 400,
-      height: 400,
-      margin: '40px ',
-      display: 'flex',
+    <Card style={{
       flexFlow: 'column',
       paddingTop: '20px',
       justifyContent: 'space-between'
     }}>
-      <div style={{
-        display: 'flex',
-        flexFlow: 'column'
-      }}>
-        <code style={{
-          marginBottom: '10px'
-        }}>{company}</code>
-        <h1>{role}</h1>
-      </div>
+      <CardHeader meta={company} header={role} />
 
-      <div className='rounded button' style={{
-        }}>
-        <a href={url}> Apply Now </a>
-      </div>
-    </div>
+      <Button label='website' fn={() => window.open(url, '_blank')} style={{
+        alignSelf: 'flex-end'
+      }}/>
+    </Card>
   )
 }
 
