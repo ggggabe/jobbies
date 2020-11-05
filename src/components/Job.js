@@ -17,17 +17,13 @@ const JobCard = ({model}) => {
       justifyContent: 'space-between'
     }}>
       <CardHeader meta={company} header={role} />
-
-      <Button label='website' fn={() => window.open(url, '_blank')} style={{
-        alignSelf: 'flex-end'
-      }}/>
+      <Button label='website' fn={() => window.open(url, '_blank')} style={{ alignSelf: 'flex-end' }} />
     </Card>
   )
 }
 
 export const JobCards = () => {
   const jobs = useContext(JobsContext)
-  console.log(jobs)
 
   return <>
     {jobs.map( (job, index) => <JobCard key={index} model={JobModel.makeModel(job)} /> )}

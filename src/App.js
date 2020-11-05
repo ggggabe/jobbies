@@ -1,14 +1,31 @@
-import { JobCards } from './components'
+/* * * * * * * * * * * * * *
+ *
+ * PATH: src/App.js
+ *
+ * * * * * * * * * * * * * */
+
+import { JobCards, HorizontalContainer, VerticalContainer } from './components'
+import { MenuProvider } from './contexts'
+
+const menu = ['one', 'two', 'three'].map( (label, index) => ({ label, index }))
 
 const App = () => {
   return (
-    <div style={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
-    }}>
-      <JobCards />
-    </div>
+    <HorizontalContainer>
+      <VerticalContainer style={{
+        width: 200,
+      }}>
+        <MenuProvider menu={menu} />
+      </VerticalContainer>
+
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+      }}>
+        <JobCards />
+      </div>
+    </HorizontalContainer>
   );
 }
 

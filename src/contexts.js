@@ -1,6 +1,16 @@
 import {
-  createContext
+  createContext,
+  useReducer
 } from 'react'
+
+import {
+  MenuModel,
+  MenuItemModel,
+} from './models'
+
+import {
+  MenuItem
+} from './components'
 
 export const JobsContext = createContext([
   {
@@ -29,3 +39,18 @@ export const JobsContext = createContext([
     url: 'https://www.sketch.com/jobs/frontend-developer/'
   }
 ])
+
+
+export const MenuContext = createContext(MenuModel.initialState)
+
+export const MenuProvider = ({children, menu}) => {
+  const value = MenuModel.getProviderValue(...useReducer(MenuModel.reducer, MenuModel.initialState))
+
+  return (
+    <MenuContext.Provider value={value}>
+      {
+        menu.map( (data, index) => <MenuItem {...MenuItemModel.getProps(data)}/>)
+      }
+    </MenuContext.Provider>
+  )
+}

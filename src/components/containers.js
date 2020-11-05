@@ -1,3 +1,29 @@
+/* * * * * * * * * * * * * *
+ *
+ * PATH: src/components/containers.js
+ *
+ * * * * * * * * * * * * * */
+
+export const VerticalContainer = ({children, style}) => (
+  <div style={{
+    display: 'flex',
+    flexFlow: 'column',
+    ...style
+  }}>
+    {children}
+  </div>
+)
+
+export const HorizontalContainer = ({children, style}) => (
+  <div style={{
+    display: 'flex',
+    flexFlow: 'row',
+    ...style
+  }}>
+    {children}
+  </div>
+)
+
 export const Card = ({style, children}) => (
   <div className='rounded' style={{
     width: 400,
@@ -11,18 +37,16 @@ export const Card = ({style, children}) => (
 )
 
 export const CardHeader = ({meta, header, style}) => (
-  <div style={{
-    display: 'flex',
-    flexFlow: 'column',
+  <VerticalContainer style={{
+    cursor: 'pointer',
     ...style,
-    cursor: 'pointer'
   }}>
     <code style={{
       marginBottom: '10px',
     }}>{meta}</code>
 
     <h1>{header}</h1>
-  </div>
+  </VerticalContainer>
 )
 
 export const Button = ({
@@ -37,3 +61,4 @@ export const Button = ({
     {label}
   </button>
 )
+

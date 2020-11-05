@@ -1,7 +1,6 @@
 
 export class JobModel {
   constructor (data) {
-    console.log(data)
     const {
       company,
       role,
