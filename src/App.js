@@ -14,6 +14,8 @@ const App = () => {
     <HorizontalContainer>
       <VerticalContainer style={{
         width: 200,
+        paddingTop: '40px',
+        textAlign: 'right'
       }}>
         <MenuProvider menu={menu} />
       </VerticalContainer>
