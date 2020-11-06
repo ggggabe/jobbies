@@ -52,7 +52,7 @@ button:hover {
 
 .rounded {
   box-sizing: border-box;
-  border: solid 1px #fffefc;
+  border: solid 2px #fffefc;
   border-radius: 40px;
   padding: 40px;
 }

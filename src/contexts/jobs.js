@@ -1,18 +1,8 @@
 import {
   createContext,
-  useReducer
 } from 'react'
 
-import {
-  MenuModel,
-  MenuItemModel,
-} from './models'
-
-import {
-  MenuItem
-} from './components'
-
-export const JobsContext = createContext([
+const STUB = [
   {
     company: '1Password',
     role: 'Web Assembly Engineer',
@@ -38,27 +28,9 @@ export const JobsContext = createContext([
     role: 'Backend Developer',
     url: 'https://www.sketch.com/jobs/frontend-developer/'
   }
-])
+]
+
+export const JobsContext = createContext(STUB)
 
 
-export const MenuContext = createContext(MenuModel.initialState)
-
-export const MenuProvider = ({children, menu}) => {
-  const value = MenuModel.getProviderValue(...useReducer(MenuModel.reducer, MenuModel.initialState))
-
-  return (
-    <MenuContext.Provider value={value}>
-      {
-        menu.map( (data, index) => {
-          const Link = MenuItemModel.getLink(data)
-
-          return Link ? (
-            <Link>
-              <MenuItem {...MenuItemModel.getProps(data)} />
-            </Link>
-          ) : <MenuItem {...MenuItemModel.getProps(data)}/>
-        })
-      }
-    </MenuContext.Provider>
-  )
-}
+// HOOKUP TO API DB

@@ -8,11 +8,18 @@ import { JobCards, HorizontalContainer, VerticalContainer } from './components'
 import { MenuProvider } from './contexts'
 import { Link } from 'wouter'
 
-const menu = ['one', 'two', 'three'].map( (label, index) => ({
-  label,
-  index,
-  link: ({children}) => (<Link href={`/${label}`}> {children} </Link>)
-}))
+const menu = [
+  'Application Tracker',
+  'Idle Animation',
+  'Scheduler'
+].map(
+  (label, index) => ({
+    label,
+    index,
+    absoluteLocation: label.toLowerCase().replace(' ', '-'),
+    link: ({children}) => (<Link href={`/${label}`}> {children} </Link>)
+  })
+)
 
 const App = () => {
   return (
@@ -20,18 +27,18 @@ const App = () => {
       <VerticalContainer style={{
         width: 200,
         paddingTop: '40px',
-        textAlign: 'right'
+        textAlign: 'right',
+        flex: '0 0 180px'
       }}>
         <MenuProvider menu={menu} />
       </VerticalContainer>
 
-      <div style={{
-        display: 'flex',
+      <HorizontalContainer style={{
         flexWrap: 'wrap',
         justifyContent: 'space-around',
       }}>
         <JobCards />
-      </div>
+      </HorizontalContainer>
     </HorizontalContainer>
   );
 }
