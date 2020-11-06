@@ -9,13 +9,15 @@ export class MenuItemModel {
     const {
       label,
       index,
-      fn = () => {}
+      onClick = () => {},
+      link
     } = data
 
     Object.assign(this, {
       label,
       index,
-      fn
+      link,
+      onClick
     })
   }
 
@@ -25,18 +27,24 @@ export class MenuItemModel {
     return new MenuItemModel(data)
   }
 
+  static getLink(data) {
+    return data.link || null
+  }
+
   static getProps(data) {
     const {
       label,
       index,
-      fn
+      link,
+      onClick
     } = MenuItemModel.makeModel(data)
 
     return {
       label,
       key: index,
+      link,
       onClick: e => {
-        fn()
+        onClick()
       }
     }
   }

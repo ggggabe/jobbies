@@ -49,7 +49,15 @@ export const MenuProvider = ({children, menu}) => {
   return (
     <MenuContext.Provider value={value}>
       {
-        menu.map( (data, index) => <MenuItem {...MenuItemModel.getProps(data)}/>)
+        menu.map( (data, index) => {
+          const Link = MenuItemModel.getLink(data)
+
+          return Link ? (
+            <Link>
+              <MenuItem {...MenuItemModel.getProps(data)} />
+            </Link>
+          ) : <MenuItem {...MenuItemModel.getProps(data)}/>
+        })
       }
     </MenuContext.Provider>
   )
