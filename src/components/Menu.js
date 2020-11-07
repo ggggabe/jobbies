@@ -5,8 +5,8 @@
  * * * * * * * * * * * * * */
 
 import { useContext } from 'react'
-import { MenuContext } from '../contexts'
-import { MenuModel, RouteModel} from '../models'
+import { MenuContext, MenuDispatch } from '../contexts'
+import { RouteModel} from '../models'
 
 export const MenuItem = (data) => {
   const {
@@ -15,7 +15,7 @@ export const MenuItem = (data) => {
     style
   } = data
 
-  const { state: { currentOption } , dispatch } = useContext(MenuContext)
+  const { state: { selected } , dispatch } = useContext(MenuContext)
 
   return (
     <div style={{
@@ -24,13 +24,13 @@ export const MenuItem = (data) => {
     }} onClick={e => {
       e.preventDefault()
       dispatch({
-        type: MenuModel.SELECT,
+        type: MenuDispatch.SELECT,
         payload: RouteModel.getAbsolutePath(data)
       })
       onClick(e)
     }}>
       <code style={{
-        color: currentOption === RouteModel.getAbsolutePath(data) ? '#ff3366' : 'inherit'
+        color: selected === RouteModel.getAbsolutePath(data) ? '#ff3366' : 'inherit'
       }}>
         {label}
       </code>

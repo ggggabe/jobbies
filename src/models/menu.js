@@ -43,34 +43,3 @@ export class MenuItemModel {
     }
   }
 }
-
-export class MenuModel {
-  static initialState(opt = '') {
-    return {
-      currentOption: opt
-    }
-  }
-
-  static reducer (state, action) {
-    const { type, payload } = action
-
-    console.debug(payload)
-    switch (type) {
-      case MenuModel.SELECT:
-        return { ...state, currentOption: payload }
-      default:
-        throw new Error()
-    }
-  }
-
-  static getProviderValue (state, dispatch) {
-    return {
-      state,
-      dispatch
-    }
-  }
-
-  get SELECT() {
-    return 'select menu option'
-  }
-}

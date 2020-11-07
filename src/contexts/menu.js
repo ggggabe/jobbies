@@ -4,7 +4,6 @@ import {
 } from 'react'
 
 import {
-  MenuModel,
   RouteModel
 } from '../models'
 
@@ -17,17 +16,32 @@ import {
   useLocation
 } from 'wouter'
 
-export const MenuContext = createContext(MenuModel.initialState)
+export const MenuContext = createContext()
 
-export const MenuProvider = ({children, menu, current = ''}) => {
+export const MenuDispatch = {
+  SELECT: 'select menu option',
+}
+
+export const MenuProvider = ({children, menu, selected = ''}) => {
+
   const [location] = useLocation()
-  const value = MenuModel.getProviderValue(...useReducer(MenuModel.reducer, {
-    ...MenuModel.initialState,
-    currentOption: location
-  }))
+
+  const [state, dispatch] = useReducer(
+    (state, action) => {
+      const { type, payload } = action
+
+      switch (type) {
+        case MenuDispatch.SELECT:
+          return { ...state, selected: payload }
+        default:
+          throw new Error()
+      }
+    }, {
+      selected: location
+    })
 
   return (
-    <MenuContext.Provider value={value}>
+    <MenuContext.Provider value={{state, dispatch}}>
       {
         menu.map( (data, index) => {
           return (
@@ -38,5 +52,35 @@ export const MenuProvider = ({children, menu, current = ''}) => {
         })
       }
     </MenuContext.Provider>
+  )
+}
+
+export const SubMenuContext = createContext({
+  submenu: null,
+  parentMenu: null,
+})
+
+export const SubMenu = ({ children, menu, base, selected=''}) => {
+
+  const [state, dispatch] = useReducer( (state, action) => {
+    const {type, payload} = action
+
+    switch (type) {
+      case MenuDispatch.SELECT:
+        return { ...state, selected: payload }
+      default:
+        console.error(`Unknown dispatch type${type}`)
+        return {
+          ...state
+        }
+    }
+  }, {
+    selected: RouteModel.getAbsolutePath(menu[0]),
+  })
+
+  return (
+    <SubMenuContext.Provider value={{state, dispatch}}>
+
+    </SubMenuContext.Provider>
   )
 }
