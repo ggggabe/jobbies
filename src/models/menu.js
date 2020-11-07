@@ -9,14 +9,12 @@ export class MenuItemModel {
     const {
       label,
       index,
-      onClick = () => {},
-      link
+      onClick = () => {}
     } = data
 
     Object.assign(this, {
       label,
       index,
-      link,
       onClick
     })
   }
@@ -25,10 +23,6 @@ export class MenuItemModel {
     if (data instanceof MenuItemModel ) return data
 
     return new MenuItemModel(data)
-  }
-
-  static getLink(data) {
-    return data.link || null
   }
 
   static getProps(data) {
