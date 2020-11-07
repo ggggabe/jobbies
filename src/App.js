@@ -12,6 +12,7 @@ import { RouteModel } from './models'
 
 import Jobbies from './Jobbies'
 import Idle from './Idle'
+import Scheduler from './Scheduler'
 
 const MAIN_MENU = [
   'Jobbies',
@@ -39,8 +40,9 @@ const App = () => {
         <MenuProvider menu={MAIN_MENU} />
       </VerticalContainer>
 
-      <Route path={RouteModel.cleanPath('/jobbies')} component={Jobbies} />
+      <Route path={RouteModel.cleanPath('jobbies')} component={Jobbies} />
       <Route path={RouteModel.cleanPath('idle')} component={Idle} />
+      <Route path={RouteModel.cleanPath('scheduler')} component={Scheduler} />
     </HorizontalContainer>
   );
 }
