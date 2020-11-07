@@ -24,3 +24,17 @@ export const HorizontalContainer = ({children, style}) => (
   </div>
 )
 
+
+export const CenteredContent = ({
+  children,
+  style
+}) => (
+  <div style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...style
+  }}>
+    {children}
+  </div>
+)

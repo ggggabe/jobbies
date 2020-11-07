@@ -10,11 +10,12 @@ import { HorizontalContainer, VerticalContainer } from './components'
 import { MenuProvider } from './contexts'
 import { RouteModel } from './models'
 
-import Jobbies from './jobbies'
+import Jobbies from './Jobbies'
+import Idle from './Idle'
 
 const MAIN_MENU = [
-  'Application Tracker',
-  'Idle Animation',
+  'Jobbies',
+  'Idle',
   'Scheduler'
 ].map(
   (label, index) => ({
@@ -26,7 +27,9 @@ const MAIN_MENU = [
 
 const App = () => {
   return (
-    <HorizontalContainer>
+    <HorizontalContainer style={{
+      minHeight: '100%'
+    }}>
       <VerticalContainer style={{
         width: 200,
         paddingTop: '40px',
@@ -36,9 +39,8 @@ const App = () => {
         <MenuProvider menu={MAIN_MENU} />
       </VerticalContainer>
 
-      <Route path={RouteModel.cleanPath('/application-tracker')}>
-        <Jobbies />
-      </Route>
+      <Route path={RouteModel.cleanPath('/jobbies')} component={Jobbies} />
+      <Route path={RouteModel.cleanPath('idle')} component={Idle} />
     </HorizontalContainer>
   );
 }
