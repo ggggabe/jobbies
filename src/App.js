@@ -6,9 +6,10 @@
 
 import { JobCards, HorizontalContainer, VerticalContainer } from './components'
 import { MenuProvider } from './contexts'
-import { Link } from 'wouter'
+import { RouteModel } from './models'
+import { Route } from 'wouter'
 
-const menu = [
+const MAIN_MENU = [
   'Application Tracker',
   'Idle Animation',
   'Scheduler'
@@ -16,8 +17,7 @@ const menu = [
   (label, index) => ({
     label,
     index,
-    absoluteLocation: label.toLowerCase().replace(' ', '-'),
-    link: ({children}) => (<Link href={`/${label}`}> {children} </Link>)
+    absolutePath: RouteModel.cleanPath(label),
   })
 )
 
@@ -30,15 +30,17 @@ const App = () => {
         textAlign: 'right',
         flex: '0 0 180px'
       }}>
-        <MenuProvider menu={menu} />
+        <MenuProvider menu={MAIN_MENU} />
       </VerticalContainer>
 
-      <HorizontalContainer style={{
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-      }}>
-        <JobCards />
-      </HorizontalContainer>
+      <Route path={RouteModel.cleanPath('/application-tracker')}>
+        <HorizontalContainer style={{
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
+        }}>
+          <JobCards />
+        </HorizontalContainer>
+      </Route>
     </HorizontalContainer>
   );
 }

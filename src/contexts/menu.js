@@ -6,11 +6,16 @@ import {
 import {
   MenuModel,
   MenuItemModel,
+  RouteModel
 } from '../models'
 
 import {
   MenuItem
 } from '../components'
+
+import {
+  Link
+} from 'wouter'
 
 export const MenuContext = createContext(MenuModel.initialState)
 
@@ -21,13 +26,11 @@ export const MenuProvider = ({children, menu}) => {
     <MenuContext.Provider value={value}>
       {
         menu.map( (data, index) => {
-          const Link = MenuItemModel.getLink(data)
-
-          return Link ? (
-            <Link key={index}>
+          return (
+            <Link key={index} href={RouteModel.getAbsolutePath(data)}>
               <MenuItem {...MenuItemModel.getProps(data)} />
             </Link>
-          ) : <MenuItem {...MenuItemModel.getProps(data)}/>
+          )
         })
       }
     </MenuContext.Provider>
