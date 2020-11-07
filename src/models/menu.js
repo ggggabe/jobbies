@@ -54,6 +54,7 @@ export class MenuModel {
   static reducer (state, action) {
     const { type, payload } = action
 
+    console.debug(payload)
     switch (type) {
       case MenuModel.SELECT:
         return { ...state, currentOption: payload }

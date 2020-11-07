@@ -1,16 +1,13 @@
 /* * * * * * * * * * * * * *
  *
- * PATH: table/src/App.js
+ * PATH: jobies/src/App.js
  *
  * * * * * * * * * * * * * */
-import { Route } from 'wouter'
 
-
-import { HorizontalContainer, VerticalContainer } from './components'
+import { JobCards, HorizontalContainer, VerticalContainer } from './components'
 import { MenuProvider } from './contexts'
 import { RouteModel } from './models'
-
-import Jobbies from './jobbies'
+import { Route } from 'wouter'
 
 const MAIN_MENU = [
   'Application Tracker',
@@ -37,7 +34,12 @@ const App = () => {
       </VerticalContainer>
 
       <Route path={RouteModel.cleanPath('/application-tracker')}>
-        <Jobbies />
+        <HorizontalContainer style={{
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
+        }}>
+          <JobCards />
+        </HorizontalContainer>
       </Route>
     </HorizontalContainer>
   );
