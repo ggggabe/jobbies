@@ -31,16 +31,4 @@ export const CardHeader = ({meta, header, style}) => (
   </VerticalContainer>
 )
 
-export const Button = ({
-  label,
-  fn ,
-  style
-}) => (
-  <button className='rounded button' style={{ padding: '20px 40px', ...style }} onClick={(e) => {
-    e.preventDefault()
-    fn()
-  }}>
-    {label}
-  </button>
-)
 
