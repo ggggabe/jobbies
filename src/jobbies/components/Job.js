@@ -1,7 +1,8 @@
 import { useContext } from 'react'
 import { JobModel } from '../models'
 import { JobsContext } from '../contexts'
-import { Card, CardHeader, Button } from './containers'
+import { Card, CardHeader } from './containers'
+import { Button } from '../common'
 
 const JobCard = ({model}) => {
   const {

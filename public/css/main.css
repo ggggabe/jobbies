@@ -17,6 +17,10 @@ code {
   font-family: 'M+ MN Type-1 Regular';
 }
 
+label, input, select, select > option {
+  font-family: 'M+ MN Type-1 Regular';
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Bagnard';
 }
@@ -36,6 +40,17 @@ a {
 *:hover {
   color: #6112f1;
 }
+
+input:hover {
+  color: #fffefc;
+}
+
+input {
+  font-size: 1.3em;
+  min-width: 0;
+  width:100%;
+}
+
 
 button {
   font-size: 1em;
