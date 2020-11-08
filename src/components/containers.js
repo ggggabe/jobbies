@@ -38,3 +38,16 @@ export const CenteredContent = ({
     {children}
   </div>
 )
+
+export const Button = ({
+  label,
+  fn ,
+  style
+}) => (
+  <button className='rounded button' style={{ padding: '20px 40px', ...style }} onClick={(e) => {
+    fn && e.preventDefault()
+    fn && fn()
+  }}>
+    {label}
+  </button>
+)
