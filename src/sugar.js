@@ -1,3 +1,5 @@
+import crypto from 'crypto'
+
 export class Sugar {
   static move (arr, srcIndex, destIndex) {
     const direction = destIndex - srcIndex
@@ -17,3 +19,27 @@ export class Sugar {
     ]
   }
 }
+
+export class FullyConnectedGraph {
+  constructor() {
+    this.graph = {}
+    this.size = 0
+  }
+
+  addNode(node) {
+    node.hash = this.size
+
+    node.connected = Object.values(this.graph).reduce(
+      (graph, n) => {
+        console.log(graph,n)
+        n.connected[node.hash] = node
+        graph[n.hash] = n
+
+        return graph
+      }, {})
+
+    this.graph[node.hash] = node
+    this.size++
+  }
+}
+
