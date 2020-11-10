@@ -1,48 +1,63 @@
 /* * * * * * * * * * * * * *
  *
- * PATH: jobies/src/App.js
+ * PATH: jobbies/App.js
  *
  * * * * * * * * * * * * * */
 
-import { JobCards, HorizontalContainer, VerticalContainer } from './components'
-import { MenuProvider } from './contexts'
-import { RouteModel } from './models'
-import { Route } from 'wouter'
+import { useReducer } from 'react'
+import { FormContext, Form, Input } from './components'
+import { CenteredContent, HorizontalContainer } from '../components'
 
-const MAIN_MENU = [
-  'Application Tracker',
-  'Idle Animation',
-  'Scheduler'
-].map(
-  (label, index) => ({
-    label,
-    index,
-    absolutePath: RouteModel.cleanPath(label),
-  })
+/*
+const List = () => (
+  <HorizontalContainer style={{
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  }}>
+    <JobCards />
+  </HorizontalContainer>
 )
+*/
 
-const App = () => {
-  return (
-    <HorizontalContainer>
-      <VerticalContainer style={{
-        width: 200,
-        paddingTop: '40px',
-        textAlign: 'right',
-        flex: '0 0 180px'
-      }}>
-        <MenuProvider menu={MAIN_MENU} />
-      </VerticalContainer>
+const JobFormContainer = () => {
+  const [state, dispatch] = useReducer( (state, action) => {
+    const { type, payload } = action
 
-      <Route path={RouteModel.cleanPath('/application-tracker')}>
-        <HorizontalContainer style={{
-          flexWrap: 'wrap',
-          justifyContent: 'space-around',
-        }}>
-          <JobCards />
-        </HorizontalContainer>
-      </Route>
-    </HorizontalContainer>
-  );
+    switch (type) {
+      case 'update':
+        return { ...state, ...payload }
+      case 'clear':
+        return {}
+      case 'submit':
+        console.table(state)
+        return {...state}
+      default:
+        return state
+    }
+  }, {})
+
+  return <FormContext.Provider value={{
+    state,
+    dispatch
+  }}>
+    <Form>
+      <h1> New Job </h1>
+      <HorizontalContainer >
+        <Input label='Company' field='company' />
+        <Input label='Location' field='location' options={[ 'Remote', 'NY', 'NJ' ]} />
+      </HorizontalContainer>
+      <Input label='Position' field='position' />
+      <Input label='Website' field='website' />
+    </Form>
+  </FormContext.Provider>
 }
 
-export default App
+
+export const JobbiesWrapper = () => {
+  return <CenteredContent style={{
+    flex: 1
+  }}>
+    <JobFormContainer />
+  </CenteredContent>
+}
+
